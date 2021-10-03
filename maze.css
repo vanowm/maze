@@ -1,0 +1,29 @@
+#info
+{
+  white-space: pre;
+}
+body
+{
+  display: grid;
+  margin: 2em;
+}
+canvas:not(#zoom)
+{
+  display: block;
+  margin: auto;
+  padding: 1.5em;
+  cursor: zoom-in;
+}
+
+#zoom
+{
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  _pointer-events: none;
+  z-index: 1;
+  border: 1px solid black;
+  border-radius: 100%;
+  cursor: crosshair !important;
+}
