@@ -2,11 +2,13 @@
 {
   white-space: pre;
 }
+
 body
 {
   display: grid;
   margin: 2em;
 }
+
 canvas:not(#zoom)
 {
   display: block;
@@ -21,7 +23,7 @@ canvas:not(#zoom)
   top: 0;
   left: 0;
   background-color: transparent;
-  _pointer-events: none;
+  /* pointer-events: none; */
   z-index: 1;
   border: 1px solid black;
   border-radius: 100%;
