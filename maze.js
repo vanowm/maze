@@ -304,7 +304,11 @@ function time(d)
   const t = new Date() - d,
         s = Math.round(t / 1000);
 
-  return ('0'+~~(s/3600) % 24).slice(-2)+':'+('0'+~~(s/60)%60).slice(-2)+':'+('0' + s % 60).slice(-2) + ("" + (t / 1000) + ".000").match(/\.(\d+)/)[0];
+  return ('0'+~~(s/3600) % 24)
+          .slice(-2) + ':' + ('0'+~~(s/60)%60)
+          .slice(-2) + ':' + ('0' + s % 60)
+          .slice(-2) + ("" + (t / 1000) + ".000")
+          .match(/\.(\d+)/)[0];
 }
 let d = new Date();
 const maze = new Maze();
@@ -341,7 +345,9 @@ function showZoom(e)
   zoomCtx.fillRect(0, 0, zoomSize, zoomSize);
   lastZoom.x = x - zoomSize/(zoom * 2) +1;
   lastZoom.y = y - zoomSize/(zoom * 2) +1;
-  zoomCtx.drawImage(maze.canvas, lastZoom.x, lastZoom.y , zoomWidth , zoomHeight , 0, 0, zoomSize, zoomSize);
+  zoomCtx.drawImage(maze.canvas,
+                    lastZoom.x, lastZoom.y, zoomWidth, zoomHeight,
+                    0,          0,          zoomSize,  zoomSize);
 }
 
 function eventMove(e)
@@ -363,7 +369,6 @@ elZoom.addEventListener("mousemove", eventMove);
 
 document.body.addEventListener("mousedown", e =>
 {
-console.log(e.target);
     if (e.target === maze.canvas || e.target === elZoom)
     {
       showZoom(e);
