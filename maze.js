@@ -6,7 +6,7 @@ const TOP = 0, //cell data indexes
       VISITED = 4,
       NEIGHBORS = 5;
 
-      class Maze
+class Maze
 {
   constructor(pref)
   {
@@ -14,7 +14,7 @@ const TOP = 0, //cell data indexes
       pref = {};
 
     const rect = document.body.firstElementChild.getBoundingClientRect();
-    this.size = pref.size || 2;
+    this.size = pref.size || 20;
     this.columns = pref.columns || Math.round((window.innerWidth-rect.x*3)/this.size);
     this.rows = pref.rows || Math.round((window.innerHeight-rect.y*3)/this.size);
     this.start = pref.start || [0,0];
@@ -256,7 +256,7 @@ const TOP = 0, //cell data indexes
     });
     ctx.beginPath();
     ctx.strokeStyle = "rgb(0, 155, 255)";
-    ctx.lineWidth = 1;//this.size/1.2;
+    ctx.lineWidth = Math.max(1, (this.size - 2) / 1.5);//1;//this.size/1.2;
 //    ctx.lineJoin = "round";
 //    ctx.lineCap = "square";
 //    ctx.lineCap = "round";
