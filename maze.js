@@ -5,7 +5,8 @@ const TOP = 0, //cell data indexes
       LEFT = 3,
       VISITED = 4,
       NEIGHBORS = 5;
-class Maze
+
+      class Maze
 {
   constructor(pref)
   {

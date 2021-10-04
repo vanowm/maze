@@ -1,0 +1,4 @@
+{
+    "intelephense.telemetry.enabled": false,
+    "checkpoints.showActiveFileOnly": true
+}
