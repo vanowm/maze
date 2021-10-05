@@ -1,4 +1,3 @@
-const zoom = 5;
 const TOP = 0, //cell data indexes
       RIGHT = 1,
       BOTTOM = 2,
@@ -311,7 +310,7 @@ function time(d)
           .match(/\.(\d+)/)[0];
 }
 let d = new Date();
-const maze = new Maze();
+const maze = new Maze({size: 10});
 let t = new Date() - d;
 document.getElementById("info").appendChild(document.createTextNode("path length: " + maze.path.length + "\n"));
 document.getElementById("info").appendChild(document.createTextNode("maze size: " + maze.columns + "x" + maze.rows + "\n"));
@@ -322,17 +321,20 @@ maze.show();
 t = new Date() - d;
 document.getElementById("info").appendChild(document.createTextNode(time(d) + ""));
 
+const zoom = (5 - Math.max(0, ~~(maze.size/10)));
+console.log(maze.size, zoom);
 const elZoom = document.getElementById("zoom")
       zoomCtx = elZoom.getContext("2d"),
       zoomSize = Math.max(3, Math.min(6, zoom)) / 2 * 100,
-      zoomWidth = zoomSize / zoom,
-      zoomHeight = zoomSize / zoom,
+      zoomWidth = zoomSize/zoom,
+      zoomHeight = zoomSize/zoom,
       lastZoom = {x:0, y:0};
 
 function showZoom(e)
 {
   elZoom.width = zoomSize;
   elZoom.height = zoomSize;
+  elZoom.hidden = false;
   const node = maze.canvas,
         padding = parseInt(getComputedStyle(node).padding),
         x = ~~((e.x + (e.pageX - e.x - 0) - node.offsetLeft)) - padding,
@@ -352,7 +354,7 @@ function showZoom(e)
 
 function eventMove(e)
 {
-  if (!e.buttons)
+  if (e.buttons != 1)
     return;
 
   showZoom(e);
@@ -366,10 +368,12 @@ maze.canvas.addEventListener("mouseleave", e =>
 
 maze.canvas.addEventListener("mousemove", eventMove);
 elZoom.addEventListener("mousemove", eventMove);
+maze.canvas.addEventListener("contextmenu", e => e.preventDefault());
+elZoom.addEventListener("contextmenu", e => e.preventDefault());
 
 document.body.addEventListener("mousedown", e =>
 {
-    if (e.target === maze.canvas || e.target === elZoom)
+    if (!e.button && (e.target === maze.canvas || e.target === elZoom))
     {
       showZoom(e);
       e.preventDefault();
@@ -378,5 +382,6 @@ document.body.addEventListener("mousedown", e =>
     {
       elZoom.width = 0;
       elZoom.height = 0;
+      elZoom.hidden = true;
     }
 });
