@@ -310,7 +310,7 @@ function time(d)
           .match(/\.(\d+)/)[0];
 }
 let d = new Date();
-const maze = new Maze({size: 10});
+const maze = new Maze({size: 2});
 let t = new Date() - d;
 document.getElementById("info").appendChild(document.createTextNode("path length: " + maze.path.length + "\n"));
 document.getElementById("info").appendChild(document.createTextNode("maze size: " + maze.columns + "x" + maze.rows + "\n"));
