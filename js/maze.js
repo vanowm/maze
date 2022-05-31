@@ -196,24 +196,24 @@ class Maze
 */
       if (cells[c][TOP]) //top
       {
-        ctx.moveTo(x, y)
+        ctx.moveTo(x, y);
         ctx.lineTo(x + this.size, y);
       }
       if (cells[c][RIGHT]) //right
       {
-        ctx.moveTo(x + this.size, y)
+        ctx.moveTo(x + this.size, y);
         ctx.lineTo(x + this.size, y + this.size);
       }
 
       if (cells[c][BOTTOM]) //bottom
       {
-        ctx.moveTo(x + this.size, y + this.size)
+        ctx.moveTo(x + this.size, y + this.size);
         ctx.lineTo(x, y + this.size);
       }
 
       if (cells[c][LEFT]) //left
       {
-        ctx.moveTo(x, y)
+        ctx.moveTo(x, y);
         ctx.lineTo(x, y + this.size);
       }
     }
@@ -323,7 +323,7 @@ document.getElementById("info").appendChild(document.createTextNode(time(d) + ""
 
 const zoom = (5 - Math.max(0, ~~(maze.size/10)));
 console.log(maze.size, zoom);
-const elZoom = document.getElementById("zoom")
+const elZoom = document.getElementById("zoom"),
       zoomCtx = elZoom.getContext("2d"),
       zoomSize = Math.max(3, Math.min(6, zoom)) / 2 * 100,
       zoomWidth = zoomSize/zoom,
@@ -358,7 +358,7 @@ function eventMove(e)
     return;
 
   showZoom(e);
-};
+}
 
 maze.canvas.addEventListener("mouseleave", e =>
 {
